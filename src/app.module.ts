@@ -17,6 +17,7 @@ import { Report } from './reports/report.entity';
         type: 'sqlite',
         database: 'db.sqlite',
         entities: [User, Report],
+        // used for updating automatocally Database table if there is a structure changes, unstade of migration
         synchronize: true,
       }
     )
