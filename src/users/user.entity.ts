@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { AfterInsert, AfterRemove, AfterUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 // that tells to typeOrm if you look at this class make a realtive table in db
 @Entity()
@@ -14,4 +14,25 @@ export class User {
 
     @Column()
     password: string;
+
+    // hook
+    @AfterInsert()
+    // this method gonna console log a message when a new user instance is called to insert user record into db User table
+    logInsert() {
+        console.log('Inserted User with id', this.id)
+    }
+
+    // hook
+    @AfterUpdate()
+    // this method gonna console log a message when a user instance is called to update user record into db User table
+    logUpdate() {
+        console.log('Updated User with id', this.id)
+    }
+
+    // hook
+    @AfterRemove()
+    // this method gonna console log a message when a user instance is called to delete user record into db User table
+    logRemove() {
+        console.log('Removed User with id', this.id)
+    }
 }
